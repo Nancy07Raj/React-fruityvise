@@ -3,7 +3,7 @@ import fruitArray from "../furityvise";
 
 function App() {
   const [text, setText] = React.useState("");
-  const [fliterData ,setFliterData] = React.useState({});
+  const [fliterData ,setFliterData] = React.useState("");
   const [display, setVisible] = React.useState(false);
 
   function handleChange(event) {
