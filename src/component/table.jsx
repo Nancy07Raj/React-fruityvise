@@ -1,14 +1,19 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect} from "react";
 import { v4 as uuidv4 } from "uuid";
+import "../style/tableStyle.css";
 
-function App() {
+
+function Table() {
   const [fetchData, setFetchData] = useState([]);
   const [editData, setEditData] = useState(null);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts/?_limit=4")
+    const abortConst = new AbortController();
+    fetch("https://jsonplaceholder.typicode.com/posts/?_limit=4",{signal: abortConst.signal})
       .then((res) => res.json())
       .then((data) => setFetchData(data));
+
+      return ()=> abortConst.abort();
   }, []);
   const [postData, setPostData] = useState({
     userId: 1,
@@ -128,4 +133,4 @@ function App() {
   );
 }
 
-export default App;
+export default Table;
